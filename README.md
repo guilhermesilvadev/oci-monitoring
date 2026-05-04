@@ -35,7 +35,7 @@ Objetivos
 - Testar funcionamento do alerta
 
 ### <a name="Tarefa 1: Criar o tópico">Tarefa 1: Criar o tópico</a>
-1. Acesse o menu hambuger => **Developer Services**
+1. Acesse o ```menu hambuger``` => ```Developer Services```
 
 2. Clique na opção **Notifications**, terceira opção abaixo da sessão “Application Integration”
    ![](./images/lab_monitoring_01.png)
@@ -45,30 +45,31 @@ Objetivos
 
 4. No campo **Name**, preencher com o valor ```lab_monitoramento_topic```
 
-5. No campo **Description**, preencher com o valor **Grupo de notificação de monitoramento** . Ao final da página clique no botão **Create**
+5. No campo **Description**, preencher com o valor ```Grupo de notificação de monitoramento```. Ao final da página clique no botão **Create**
    ![](./images/lab_monitoring_03.png)
 
-6. Clique no tópico que acabamos de criar, **lab_monitoramento_topic***
+6. Clique no tópico, **lab_monitoramento_topic**, que acabamos de criar
    ![](./images/lab_monitoring_04.png)
 
-7. Selecione a opção **Subscription** e clique no botão **Create subscription**
+7. Selecione a opção **Subscriptions** e clique no botão **Create subscription**
    ![](./images/lab_monitoring_05.png)
 
-8. Preecha o campo e-mail com seu endereço de e-mail, este será o e-mail que será notificado quando um aletar for criado. Em seguida clique no campo **create**
+8. Preecha o campo e-mail com um endereço de e-mail,mas lembre-se, este será o e-mail para onde as notificações serão enviadas, portanto, é importante ter acesso a essa caixa de e-mail. Em seguida clique no campo **create**
    ![](./images/lab_monitoring_06.png)
 
-9.  Note que o status está **pending**, isso se deve ao usuário do e-mail informando ainda não ter se inscrito no tópico
+9.  Note que o status está **pending**, isso se deve ao fato de ainda não termos nos inscrito ao tópico
    ![](./images/lab_monitoring_07.png)
 
-10.  Abra a caixa de e-mail informando no passo 8 e você verá um e-mail com o títuli **Oracle Cloud Infrastructure Notifications Service Subscription Confirmation**. Abra o e-mail e clique no botão **confirm subscription**.
+10.  Abra a caixa de e-mail informando no passo 8 e localize um e-mail com o títuli ```Oracle Cloud Infrastructure Notifications Service Subscription Confirmation```. Abra o e-mail e clique no botão **confirm subscription**.
 
-11. Após a confirmação da subscrição, o status que antes estava **pending** agora está **active**
+
+11. Após a confirmação da subscrição, o status que antes estava **pending** mudará para **active**
    ![](./images/lab_monitoring_08.png)
 
 
 ### <a name="Tarefa 2: Criar o alarme">Tarefa 2: Criar o alarme</a>
 
-1. Acesse o menu hambuger => Obervavility & Management => Alarm Definitions
+1. Acesse o ```menu hambuger``` => ```Obervavility & Management``` => ```Alarm Definitions```
 ![](./images/lab_monitoring_task_02_img01.png)
 
 2. Clique no botão **Create Alarm**
