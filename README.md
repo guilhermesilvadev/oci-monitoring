@@ -27,25 +27,26 @@ Nosso objetivo é que, ao final deste workshop, os participantes possam ter o co
 
 ## <a name="OCI Monitoring">OCI Monitoring </a>
 
-O OCI Monitoring é um serviço de monitoramento que possibilita ter um monitoramento em tempo real dos recursos que estão provisionados na OCI
+O OCI Monitoring é um serviço de monitoramento que possibilita monitorar em tempo real recursos provisionados na OCI.
 
-Objetivos
-- Configurar um tópico
-- Configurar um alerta
+Objetivos:
+- Configurar tópico
+- Configurar alerta
 - Testar funcionamento do alerta
 
 ### <a name="Tarefa 1: Criar o tópico">Tarefa 1: Criar o tópico</a>
 1. Acesse o ```menu hambuger``` => ```Developer Services```
 
-2. Clique na opção **Notifications**, terceira opção abaixo da sessão “Application Integration”
+2. Clique na opção **Notifications**, terceira opção abaixo da sessão **Application Integration**
    ![](./images/lab_monitoring_01.png)
 
 3. Clique na opção **Create Topic**
    ![Criação Topic](./images/lab_monitoring_02.png)
 
-4. No campo **Name**, preencher com o valor ```lab_monitoramento_topic```
+4. No campo **Name**, preencha com o valor ```lab_monitoramento_topic```
 
-5. No campo **Description**, preencher com o valor ```Grupo de notificação de monitoramento```. Ao final da página clique no botão **Create**
+5. No campo **Description**, preencha com o valor ```Grupo de notificação de monitoramento```.
+   Ao final da página clique no botão **Create**
    ![](./images/lab_monitoring_03.png)
 
 6. Clique no tópico, **lab_monitoramento_topic**, que acabamos de criar
@@ -54,16 +55,16 @@ Objetivos
 7. Selecione a opção **Subscriptions** e clique no botão **Create subscription**
    ![](./images/lab_monitoring_05.png)
 
-8. Preecha o campo e-mail com um endereço de e-mail,mas lembre-se, este será o e-mail para onde as notificações serão enviadas, portanto, é importante ter acesso a essa caixa de e-mail. Em seguida clique no campo **create**
+8. Preecha o campo e-mail com um endereço de e-mail,mas lembre-se, este será o e-mail para onde as notificações serão enviadas, portanto, é importante ter acesso a essa caixa de e-mail. Após informar o endereço de e-mail clique no campo **create**
    ![](./images/lab_monitoring_06.png)
 
 9.  Note que o status está **pending**, isso se deve ao fato de ainda não termos nos inscrito ao tópico
    ![](./images/lab_monitoring_07.png)
 
-10.  Abra a caixa de e-mail informando no passo 8 e localize um e-mail com o títuli ```Oracle Cloud Infrastructure Notifications Service Subscription Confirmation```. Abra o e-mail e clique no botão **confirm subscription**.
+10.  Abra a caixa de e-mail informando no passo 8 e localize um e-mail com o título ```Oracle Cloud Infrastructure Notifications Service Subscription Confirmation```, abra o e-mail e clique no botão **confirm subscription**.
+  ![](./images/lab_monitoring_09.png)
 
-
-11. Após a confirmação da subscrição, o status que antes estava **pending** mudará para **active**
+1.  Após a confirmação da subscrição, o status que antes estava **pending** mudará para **active**
    ![](./images/lab_monitoring_08.png)
 
 
@@ -108,14 +109,11 @@ Objetivos
 ```bash
 sudo dnf install stress-ng
 ```
-3. Execute o comando
+3. Execute o comando para gerar load de CPU
 ```bash
-sudo dnf install stress-ng
+sudo stress-ng --cpu 2 -l 80 --timeout 360s
 ```
-4. Rode o comando para gerar load de CPU
-```bash
-sudo stress-ng --cpu 2 -l 40 --timeout 120s
-```
+4. Aguarde 1 minuto e verifique a caixa de e-mail informada no tópico criado anteriormente.
 
 ### <a name="Tarefa 4: Monitorando o alarme">Tarefa 4: Monitorando o alarme</a>
 
