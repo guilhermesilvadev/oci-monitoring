@@ -24,7 +24,7 @@ Nosso objetivo é que, ao final deste workshop, os participantes possam ter o co
 *If you are logged into your OCI tenancy in the Commercial Realm (OC1), the button will take you directly to OCI Resource Manager where you can proceed to deploy. If you are not logged, the button takes you to Oracle Cloud initial page where you must enter your tenancy name and login to OCI.*
 <br>
 
-## <a name="Laboratório 6: Web Application Firewall (WAF)  ">Laboratório 6: Web Application Firewall (WAF) </a>
+## <a name="OCI Monitoring">OCI Monitoring </a>
 
 O WAF é um serviço de segurança global compatível com PCI (Payment Card Industry) que protege aplicativos de tráfego malicioso e indesejado na internet.
 Objetivos
@@ -32,8 +32,8 @@ Objetivos
 - Trabalhar com regra de Controle de Acesso
 - Testar
 
-### <a name="Tarefa 1: Criar o WAF">Tarefa 1: Criando o WAF</a>
-1. Acesse o menu **Identity and Security**
+### <a name="Tarefa 1: Instalar o stress-ng">Tarefa 1: Instalar o stress-ng</a>
+1. Acesse a  menu **Identity and Security**
 
 2. Clique na opção **Policies**, primeira opção abaixo da sessão “Web Application Firewall”
    ![](./images/lab_waf01.png)
