@@ -25,6 +25,9 @@ Nosso objetivo é que, ao final deste workshop, os participantes possam ter o co
 *If you are logged into your OCI tenancy in the Commercial Realm (OC1), the button will take you directly to OCI Resource Manager where you can proceed to deploy. If you are not logged, the button takes you to Oracle Cloud initial page where you must enter your tenancy name and login to OCI.*
 <br>
 
+> [!WARNING]
+> Caso já tenha o ambiente base provisionado, não é necessário um novo provisioanamento,siga para tarefa 2.
+
 ## <a name="OCI Monitoring">OCI Monitoring </a>
 
 O OCI Monitoring é um serviço de monitoramento que possibilita monitorar em tempo real recursos provisionados na OCI.
@@ -34,7 +37,7 @@ Objetivos:
 - Configurar alerta
 - Testar funcionamento do alerta
 
-### <a name="Tarefa 1: Criar o tópico">Tarefa 1: Criar o tópico</a>
+### <a name="Tarefa 21: Criar o tópico">Tarefa 2: Criar o tópico</a>
 1. Acesse o ```menu hambuger``` => ```Developer Services```
 
 2. Clique na opção **Notifications**, terceira opção abaixo da sessão **Application Integration**
@@ -68,7 +71,7 @@ Objetivos:
    ![](./images/lab_monitoring_08.png)
 
 
-### <a name="Tarefa 2: Criar o alarme">Tarefa 2: Criar o alarme</a>
+### <a name="Tarefa 3: Criar o alarme">Tarefa 3: Criar o alarme</a>
 
 1. Acesse o ```menu hambuger``` => ```Obervavility & Management``` => ```Alarm Definitions```
 ![](./images/lab_monitoring_task_02_img01.png)
@@ -102,7 +105,7 @@ Objetivos:
    3.  Notification subject: ```High CPU Utilization```
   ![](./images/lab_monitoring_task_02_img03.png)
 
-### <a name="Tarefa 3: Disparando o alarme">Tarefa 3: Disparando o alarme</a>
+### <a name="Tarefa 4: Disparando o alarme">Tarefa 4: Disparando o alarme</a>
   
 1. Realize o login SSH em uma instância
 2. Instale o pacote stress-ng
@@ -113,7 +116,9 @@ sudo dnf install stress-ng
 ```bash
 sudo stress-ng --cpu 2 -l 80 --timeout 360s
 ```
-4. Aguarde 1 minuto e verifique a caixa de e-mail informada no tópico criado anteriormente.
+4. Aguarde 5 minutos e verifique a caixa de e-mail informada no tópico criado anteriormente, você deverá receber um e-mail de alerta.
+
+5. Aguarde 5 minutos e verifique a caixa de e-mail invamente, você deverá receber um e-mail de normalizaç!ao do alerta.
 
 ### <a name="Tarefa 4: Monitorando o alarme">Tarefa 4: Monitorando o alarme</a>
 
