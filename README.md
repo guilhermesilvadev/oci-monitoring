@@ -32,95 +32,98 @@ Objetivos
 - Trabalhar com regra de Controle de Acesso
 - Testar
 
-### <a name="Tarefa 1: Instalar o stress-ng">Tarefa 1: Instalar o stress-ng</a>
-1. Acesse a  menu **Identity and Security**
+### <a name="Tarefa 1: Criar o tópico">Tarefa 1: Criar o tópico</a>
+1. Acesse o menu hambuger => **Developer Services**
 
-2. Clique na opção **Policies**, primeira opção abaixo da sessão “Web Application Firewall”
-   ![](./images/lab_waf01.png)
+2. Clique na opção **Notifications**, terceira opção abaixo da sessão “Application Integration”
+   ![](./images/lab_monitoring_01.png)
 
-3. Clique na opção **Create WAF Policy**
-   ![Criação police](./images/lab_waf02.png)
+3. Clique na opção **Create Topic**
+   ![Criação Topic](./images/lab_monitoring_02.png)
 
-4. No passo 1, **Basic information**, preencha o campo Name com o valor **waf-policie-v1** e clique no botão **next** que está no final da página
-   ![](./images/lab_waf03.png)
+4. No campo *Name**, preencher com o valor ``lab_monitoramento_topic``
 
-5. No passo 2, **Access control**, marque a opção **Enable access control** e clique no botão **Add access rule**
-   ![](./images/lab_waf04.png)
+5. No campo *Description**, preencher com o valor **Grupo de notificação de monitoramento** . Ao final da página clique no botão **Create**
+   ![](./images/lab_monitoring_03.png)
 
-6. Adicione uma regra com as configurações abaixo
-      - name: block-USA
-      - conditions type: Contry/Region
-      - operator: In List
-      - Contries: United States
-      - Sessão Rule Action
-          - Action name: Create new Action
-            - Name: block-USA
-            - Type: Return HTTP response
-            - Response code: 403 Forbidden
-            - Response page body: Apague o conteúdo existente e cole o conteúdo abaixo
-              ``` 
-              <!DOCTYPE html>
-              <html>
-              <head>
-              <title>Região não permitida!</title>
-              </head>
-              <body>
-              <h1 id="Welcome">Região não permitida!</h1>
-              <p>Esta página não tem compatibilidade com sua região</p>
-              </body>
-              </html>
-              ```
-        - Clicar no botão **Add access rule**
-        - Clique no botão **next**
-   ![](./images/lab_waf05.png)
-   ![](./images/lab_waf06.png)
-   ![](./images/lab_waf07.png)
-   ![](./images/lab_waf08.png)
+6. Clique no tópico que acabamos de criar, *lab_monitoramento_topic**
+   ![](./images/lab_monitoring_04.png)
 
-7. No passo 3, **Rate limiting**, marque a opção **Enable access control** e clique no botão **Add rate limiting rule**
-      - Sessão Add rate limiting rule
-         - Action name: Add rate limiting rule
-           - Name: rate-limit-10s
-           - Condition type: Path
-           - Operator: is
-           - Value: /
-         - Rate limiting configuration
-           - Requests limit: 3
-           - Period in seconds: 5
-           - Action duration in seconds: 10
-        ![](./images/lab_waf11.png)
-         - Rule action: create a new rule
-           - Name: block-rate-limit
-           - Response code: 403 Forbidden
-           - Type: Return HTTP response
-           - Response page body: Apague o conteúdo existente e cole o conteúdo abaixo
-             ``` 
-             <!DOCTYPE html>
-             <html>
-             <head>
-             <title>Diversos acessos em pouco tempo!</title>
-             </head>
-             <body>
-             <h1 id="Welcome">Diversos acessos em pouco tempo!</h1>
-             <p>Aguarde 10 segundos para acessar novamente!</p>
-             </body>
-             </html>
-             ```
-        ![](./images/lab_waf12.png)
-      - Clicar no botão **Add action**
-      - Clicar no botão **Add rate limiting rule**
-      - Clique no botão **next**
-8. No passo 4, **Protections**, clique em **next**
-9. No passo 5, **Select enforcement point**, selecione o load balance criado no workshop anterior.
-   ![](./images/lab_waf09.png)
-10. No passo 6, **Review and create**, clique no botão **Create WAF policy**
-   ![](./images/lab_waf13.png)
+7. Selecione a opção **Subscription** e clique no botão **Create subscription**
+   ![](./images/lab_monitoring_05.png)
 
-### <a name="Tarefa 2: Teste do WAF">Tarefa 2: Teste do WAF</a>
-1. Colete o IP do seu load balancer ```Menu => Networking => Load balancers```
-![](./images/lab_waf14.png)
-2. Colete o IP do seu load balancer
-![](./images/lab_waf15.png)
-3. Abra o seu brower e digite a url ```http://IP_LoadBalancer``` subistituindo o IP_LoadBalancer pelo IP que foi coletado no passo 2.
-4. Após o browser carregar a URL, realize o refresh da página 4 vezes, você verá a página ser bloqueada pelo WAF por ter atingido o limit.
-5. Aguarde 10 segundos e realize o refresh do browser novamente, sua página será recarregada.
+8. Preecha o campo e-mail com seu endereço de e-mail, este será o e-mail que será notificado quando um aletar for criado. Em seguida clique no campo **create**
+   ![](./images/lab_monitoring_06.png)
+
+9.  Note que o status está **pending**, isso se deve ao usuário do e-mail informando ainda não ter se inscrito no tópico
+   ![](./images/lab_monitoring_07.png)
+
+10.  Abra a caixa de e-mail informando no passo 8 e você verá um e-mail com o títuli **Oracle Cloud Infrastructure Notifications Service Subscription Confirmation**. Abra o e-mail e clique no botão **confirm subscription**.
+
+11. Após a confirmação da subscrição, o status que antes estava **pending** agora está **active**
+   ![](./images/lab_monitoring_08.png)
+
+
+### <a name="Tarefa 2: Criar o alarme">Tarefa 2: Criar o alarme</a>
+
+1. Acesse o menu hambuger => Obervavility & Management => Alarm Definitions
+![](./images/lab_monitoring_task_02_img01.png)
+
+2. Clique no botão **Create Alarm**
+3. No campo name informe ``CPU_Utilization``
+4. Na sessão **Metric description** informe:
+   1. Compartment: Compartmet onde foi criado as instâncias HTTP
+   2. Metric namespace: oci_computeagent
+   3. Resource group: Não alterar
+   4. Metric Name: CpuUtilization
+   5. Interval: 1 minute
+   6. Static: mean
+5. Na sessão **Trigger rule 1** informe:
+   1. Operator: greater than or equal to
+   2. Value: 1
+   3. Trigger delay minutes: 75
+   4. Alarm Severity: Warning
+   5. Alarm body: {{severity}}, alarm triggered because the instance {{dimensions.resourceDisplayname}} reach 75% of CPU utilization at {{timestamp}}
+6. clicar em **Additional trigger rule**
+7. Na sessão **Trigger rule 2** informe:
+   1. Operator: greater than or equal to
+   2. Value: 1
+   3. Trigger delay minutes: 90
+   4. Alarm Severity: Critical
+   5. Alarm body: {{severity}}, alarm triggered because the instance {{dimensions.resourceDisplayname}} reach 90% of CPU utilization at {{timestamp}}
+   ![](./images/lab_monitoring_task_02_img02.png)
+8. Na sessão **Define alarm notifications** informar
+   1.  Destination service: notification
+   2.  Topic: selecionar o tópico criado na task 1.
+   3.  Notification subject: High CPU Utilization
+  ![](./images/lab_monitoring_task_02_img03.png)
+
+### <a name="Tarefa 3: Disparando o alarme">Tarefa 3: Disparando o alarme</a>
+  
+1. Realize o login SSH em uma instância
+2. Instale o pacote stress-ng
+```bash
+sudo dnf install stress-ng
+```
+3. Execute o comando
+```bash
+sudo dnf install stress-ng
+```
+4. Rode o comando para gerar load de CPU
+```bash
+sudo stress-ng --cpu 2 -l 40 --timeout 120s
+```
+
+### <a name="Tarefa 4: Monitorando o alarme">Tarefa 4: Monitorando o alarme</a>
+
+Antes de executar o comando do stress o status do alarme é OK
+  ![](./images/lab_monitoring_task_02_img04.png)
+
+Porém com a execução do comando e a utilização de CPU o alarme muda para firing
+  ![](./images/lab_monitoring_task_02_img05.png)
+
+E você receberá um email com o titulo OK -> TO FIRING, isso siginifica que o recurso saiu do status de OK para Alarme
+  ![](./images/lab_monitoring_task_02_img06.png)
+
+Assim que o problema for resolvido, você receberá um email com o titulo FIRING -> TO OK, isso siginifica que o recurso saiu do status de alarme praa OK.
+

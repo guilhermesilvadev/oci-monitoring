@@ -1,0 +1,39 @@
+#!/bin/bash
+sudo setenforce 0
+sudo sed -i 's/^SELINUX=.*/SELINUX=disabled/' /etc/selinux/config
+sudo systemctl disable firewalld.service
+sudo systemctl stop firewalld.service
+sudo yum -y install httpd
+sudo systemctl start httpd
+sudo -s 
+cat <<EOF > /var/www/html/index.html
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OCI Web Server</title>
+    <style>
+        .highlight {
+            color: green;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <center>
+        <h1>OCI Web Server</h1> 
+        <h2>
+            This is my web-server 
+            <span class="highlight">HOSTNAME</span> 
+            running on Oracle Cloud Infrastructure!
+        </h2>
+        <hr>
+        <img src="https://objectstorage.us-ashburn-1.oraclecloud.com/n/idculll15zkp/b/Blog-Post/o/Sucesso.gif" alt="imagem indicando sucesso">
+    </center>
+</body>
+</html>
+
+EOF
+sudo curl -s -H "Authorization: Bearer Oracle" -H "Content-Type: application/json" http://169.254.169.254/opc/v1/instance/ | jq -r .hostname > /tmp/hostname
+sudo sed -i "s/HOSTNAME/`cat /tmp/hostname`/g" /var/www/html/index.html
