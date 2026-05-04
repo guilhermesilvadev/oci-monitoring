@@ -11,7 +11,8 @@ Por meio deste guia, trabalharemos com:
 
 - Metricas
 - Tópicos
-- Alertas e dashboards
+- Alertas
+- Dashboards
 
 As chaves SSH para acessso as instâncias ```servidor-http01``` e ```servidor-http02```, que serão criadas neste deploy, estão no diretório ```oci-monitoring/stack/ssh-keys```.
 
@@ -41,12 +42,12 @@ Objetivos
 3. Clique na opção **Create Topic**
    ![Criação Topic](./images/lab_monitoring_02.png)
 
-4. No campo *Name**, preencher com o valor ``lab_monitoramento_topic``
+4. No campo **Name**, preencher com o valor ```lab_monitoramento_topic```
 
-5. No campo *Description**, preencher com o valor **Grupo de notificação de monitoramento** . Ao final da página clique no botão **Create**
+5. No campo **Description**, preencher com o valor **Grupo de notificação de monitoramento** . Ao final da página clique no botão **Create**
    ![](./images/lab_monitoring_03.png)
 
-6. Clique no tópico que acabamos de criar, *lab_monitoramento_topic**
+6. Clique no tópico que acabamos de criar, **lab_monitoramento_topic***
    ![](./images/lab_monitoring_04.png)
 
 7. Selecione a opção **Subscription** e clique no botão **Create subscription**
