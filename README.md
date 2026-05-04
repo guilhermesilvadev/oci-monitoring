@@ -5,7 +5,7 @@
 ## <a name="overview">Introdução</a>
 Neste guia, trabalharemos na disseminação e criação de diversos conceitos de monitoramento voltados à Oracle Cloud, seguindo diferentes processos e boas técnicas de implementação.
 
-Exploraremos diversos recursos de monitoramento disponíveis na Oracle Cloud. É importante que o usuário possua um conhecimento prévio de OCI, e de preferência tenha participado ou esteja participando de nosso workshop inicial (OCI Fast Track).
+Exploraremos diversos recursos de monitoramento disponíveis na Oracle Cloud. É importante que o usuário possua um conhecimento prévio de OCI ou esteja participando de nosso workshop inicial (OCI Fast Track).
 
 Por meio deste guia, trabalharemos com:
 
@@ -21,17 +21,18 @@ Nosso objetivo é que, ao final deste workshop, os participantes possam ter o co
 
 ## <a name="Tarefa 1: Deploy do ambiente básico">Tarefa 1: Deploy do ambiente básico</a>
 
-[![Deploy_To_OCI](images/DeployToOCI.svg)](https://cloud.oracle.com/resourcemanager/stacks/create?zipUrl=https://github.com/guilhermesilvadev/oci-security/archive/refs/tags/1.0.zip)<br>
+[![Deploy_To_OCI](./images/DeployToOCI.svg)](https://cloud.oracle.com/resourcemanager/stacks/create?zipUrl=https://github.com/guilhermesilvadev/oci-security/archive/refs/tags/1.0.zip)<br>
 *If you are logged into your OCI tenancy in the Commercial Realm (OC1), the button will take you directly to OCI Resource Manager where you can proceed to deploy. If you are not logged, the button takes you to Oracle Cloud initial page where you must enter your tenancy name and login to OCI.*
 <br>
 
 ## <a name="OCI Monitoring">OCI Monitoring </a>
 
-O WAF é um serviço de segurança global compatível com PCI (Payment Card Industry) que protege aplicativos de tráfego malicioso e indesejado na internet.
+O OCI Monitoring é um serviço de monitoramento que possibilita ter um monitoramento em tempo real dos recursos que estão provisionados na OCI
+
 Objetivos
-- Configurar um WAF com o Load Balancer do workshop anterior
-- Trabalhar com regra de Controle de Acesso
-- Testar
+- Configurar um tópico
+- Configurar um alerta
+- Testar funcionamento do alerta
 
 ### <a name="Tarefa 1: Criar o tópico">Tarefa 1: Criar o tópico</a>
 1. Acesse o menu hambuger => **Developer Services**
@@ -71,32 +72,32 @@ Objetivos
 ![](./images/lab_monitoring_task_02_img01.png)
 
 2. Clique no botão **Create Alarm**
-3. No campo name informe ``CPU_Utilization``
+3. No campo name informe ```CPU_Utilization```
 4. Na sessão **Metric description** informe:
    1. Compartment: Compartmet onde foi criado as instâncias HTTP
-   2. Metric namespace: oci_computeagent
+   2. Metric namespace: ```oci_computeagent```
    3. Resource group: Não alterar
-   4. Metric Name: CpuUtilization
-   5. Interval: 1 minute
-   6. Static: mean
+   4. Metric Name: ```CpuUtilization```
+   5. Interval: ```1 minute```
+   6. Static: ```mean```
 5. Na sessão **Trigger rule 1** informe:
    1. Operator: greater than or equal to
-   2. Value: 1
-   3. Trigger delay minutes: 75
-   4. Alarm Severity: Warning
-   5. Alarm body: {{severity}}, alarm triggered because the instance {{dimensions.resourceDisplayname}} reach 75% of CPU utilization at {{timestamp}}
+   2. Value: ```75```
+   3. Trigger delay minutes: ```1```
+   4. Alarm Severity: ```Warning```
+   5. Alarm body: ```{{severity}}, alarm triggered because the instance {{dimensions.resourceDisplayname}} reach 75% of CPU utilization at {{timestamp}}```
 6. clicar em **Additional trigger rule**
 7. Na sessão **Trigger rule 2** informe:
    1. Operator: greater than or equal to
-   2. Value: 1
-   3. Trigger delay minutes: 90
-   4. Alarm Severity: Critical
-   5. Alarm body: {{severity}}, alarm triggered because the instance {{dimensions.resourceDisplayname}} reach 90% of CPU utilization at {{timestamp}}
+   2. Value: ```90```
+   3. Trigger delay minutes: ```1```
+   4. Alarm Severity: ```Critical```
+   5. Alarm body: ```{{severity}}, alarm triggered because the instance {{dimensions.resourceDisplayname}} reach 90% of CPU utilization at {{timestamp}}```
    ![](./images/lab_monitoring_task_02_img02.png)
 8. Na sessão **Define alarm notifications** informar
-   1.  Destination service: notification
-   2.  Topic: selecionar o tópico criado na task 1.
-   3.  Notification subject: High CPU Utilization
+   1.  Destination service:```notification```
+   2.  Topic: ```selecionar o tópico criado na task 1.```
+   3.  Notification subject: ```High CPU Utilization```
   ![](./images/lab_monitoring_task_02_img03.png)
 
 ### <a name="Tarefa 3: Disparando o alarme">Tarefa 3: Disparando o alarme</a>
@@ -127,4 +128,4 @@ E você receberá um email com o titulo OK -> TO FIRING, isso siginifica que o r
   ![](./images/lab_monitoring_task_02_img06.png)
 
 Assim que o problema for resolvido, você receberá um email com o titulo FIRING -> TO OK, isso siginifica que o recurso saiu do status de alarme praa OK.
-
+  ![](./images/lab_monitoring_task_02_img07.png)
